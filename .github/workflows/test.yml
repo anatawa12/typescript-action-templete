@@ -39,7 +39,7 @@ jobs:
           name: built
 
       - uses: ./
-        with: 
+        with: {}
 
   conclude:
     runs-on: ubuntu-latest
