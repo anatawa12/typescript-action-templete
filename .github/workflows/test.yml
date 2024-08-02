@@ -18,7 +18,7 @@ jobs:
       - run: corepack enable && corepack enable npm
       - run: npm ci
       - run: npm run all
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with: 
           name: built
           if-no-files-found: error
