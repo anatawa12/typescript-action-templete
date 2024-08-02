@@ -2,12 +2,12 @@ name: 'typescript action template for anatawa12'
 description: 'An template action'
 author: 'anatawa12'
 
-inputs:
+inputs: {}
   # define the inputs of your action here
 
 runs:
   using: 'node20'
   main: 'dist/index.js'
 
-outputs:
+outputs: {}
   # define the outputs of your action here
