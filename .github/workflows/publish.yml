@@ -29,6 +29,11 @@ jobs:
     name: Do Release
     runs-on: ubuntu-latest
     steps:
+      # checkout
+      - uses: actions/checkout@v4
+      - name: Fetch branches and tags
+        run: git fetch origin --tags
+
       # environment setup and checkout
       - uses: anatawa12/something-releaser@v3
       - uses: snow-actions/git-config-user@v1.0.0
@@ -37,11 +42,6 @@ jobs:
         with:
           node-version: '20'
           cache: 'npm'
-
-      # checkout
-      - uses: actions/checkout@v4
-      - name: Fetch branches and tags
-        run: git fetch origin --tags
 
       # bump version
       - name: bump version name
