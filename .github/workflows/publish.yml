@@ -38,7 +38,6 @@ jobs:
         run: git fetch origin --tags
 
       # environment setup and checkout
-      - uses: anatawa12/something-releaser@v3
       - uses: snow-actions/git-config-user@v1.0.0
       - run: corepack enable && corepack enable npm
       - uses: actions/setup-node@v4
@@ -61,6 +60,7 @@ jobs:
           fi
       - name: commit the version bump
         run: |
+          VERSION="$(jq -r '.version' < package.json)"
           git add package.json
           git commit -m "Release v$VERSION"
           git tag "source-v${VERSION}"
@@ -91,13 +91,13 @@ jobs:
           NEW_RELEASE_COMMIT="$(git commit-tree -p "${PREV_RELEASE}" -p "${SOURCE_COMMIT}" -m "v${VERSION} at ${SOURCE_COMMIT}" "$NEW_RELEASE_TREE")"
           git update-ref "refs/heads/$RELEASE_BRANCH" "${NEW_RELEASE_COMMIT}"
 
-          git tag -f "v$VERSION"
+          git tag -f "v$VERSION" "$NEW_RELEASE_COMMIT"
           if ! [[ "$VERSION" == *-* ]]; then
             # no '-' in the version name; stable release so create major and minor tags
             MAJOR="$(echo "$VERSION" | cut -d. -f1)"
             MINOR="$(echo "$VERSION" | cut -d. -f2)"
-            git tag -f "v$MAJOR"
-            git tag -f "v$MAJOR.$MINOR"
+            git tag -f "v$MAJOR" "$NEW_RELEASE_COMMIT"
+            git tag -f "v$MAJOR.$MINOR" "$NEW_RELEASE_COMMIT"
           fi
 
       - name: Tag and Push
