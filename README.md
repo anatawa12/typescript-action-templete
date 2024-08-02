@@ -20,7 +20,7 @@ The release action will build the action and commit it to the `releases` branch.
 In words:
 - Action will be built from the branch you run the publish.yml
 - The built action will be commited onto the `releases` branch.
-  - You can change branch name by changing `RELEASE_BRANCH` in `.github/workflows/publish.yml`
+  - You can change branch name by changing `RELEASE_BRANCH` in `.github/workflows/publish.yml` and `branch-ignore` in `test.yml`
 - All releases will be tagged with `v{version}` tag.
 - If the release is a stable release, it will be tagged with `v{major}.{minor}`, `v{major}` tags.
 - The version number is managed with `package.json`'s `version` field.
