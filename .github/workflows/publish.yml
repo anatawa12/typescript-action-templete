@@ -54,7 +54,7 @@ jobs:
           npm version --git-tag-version=false "${NEXT_TYPE}" --preid="${PREID}"
           VERSION="$(jq -r '.version' < package.json)"
 
-          if git tag | grep "v$VERSION" >/dev/null; then
+          if git tag | grep "^v$VERSION$" >/dev/null; then
             echo "version name duplicated" >&2
             exit 255
           fi
