@@ -96,8 +96,13 @@ jobs:
             # no '-' in the version name; stable release so create major and minor tags
             MAJOR="$(echo "$VERSION" | cut -d. -f1)"
             MINOR="$(echo "$VERSION" | cut -d. -f2)"
-            git tag -f "v$MAJOR" "$NEW_RELEASE_COMMIT"
-            git tag -f "v$MAJOR.$MINOR" "$NEW_RELEASE_COMMIT"
+            # tag vX.Y and vX if major or minor is not 0
+            if [[ "$MAJOR" != "0" ]]; then
+              git tag -f "v$MAJOR" "$NEW_RELEASE_COMMIT"
+              git tag -f "v$MAJOR.$MINOR" "$NEW_RELEASE_COMMIT"
+            elif [[ "$MINOR" != "0" ]]; then
+              git tag -f "v$MAJOR.$MINOR" "$NEW_RELEASE_COMMIT"
+            fi
           fi
 
       - name: Tag and Push
