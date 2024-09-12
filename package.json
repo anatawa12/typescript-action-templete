@@ -32,7 +32,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",
 		"@types/fs-extra": "^11.0.1",
-		"@types/jest": "^29.5.2",
+		"@types/jest": "^29.5.13",
 		"@types/node": "^20",
 		"@types/node-fetch": "^2.6.4",
 		"@types/tmp": "^0.2.3",
