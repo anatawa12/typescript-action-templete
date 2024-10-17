@@ -30,7 +30,7 @@
 		"tmp-promise": "^3.0.3"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.8.3",
+		"@biomejs/biome": "^1.9.4",
 		"@types/fs-extra": "^11.0.1",
 		"@types/jest": "^29.5.2",
 		"@types/node": "^20",
